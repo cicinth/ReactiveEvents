@@ -7,6 +7,7 @@ import com.ingressos.ingressos.web.dto.request.EventRequest;
 import com.ingressos.ingressos.web.dto.response.EventResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -25,5 +26,10 @@ public class EventsService {
     public Flux<EventResponse> getAllEvents(){
         Flux<Events> eventsFlux = eventsRepository.findAll();
         return eventsFlux.map(EventsConvertUtils::toResponse);
+    }
+
+    public Mono<EventResponse> getEventById(@PathVariable Integer id){
+        Mono<Events> event = eventsRepository.findById(id);
+        return event.map(EventsConvertUtils::toResponse);
     }
 }

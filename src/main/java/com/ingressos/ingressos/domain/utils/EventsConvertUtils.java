@@ -11,6 +11,7 @@ public class EventsConvertUtils {
         response.setId(entity.getId());
         response.setEventName(entity.getEventName());
         response.setTotalAmountTickets(entity.getTotalAmountTickets());
+        response.setTicketsSold(entity.getTicketsSold());
         return  response;
     }
     public static Events toEntity(EventRequest eventRequest){

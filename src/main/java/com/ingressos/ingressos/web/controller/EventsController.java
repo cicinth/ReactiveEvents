@@ -30,4 +30,9 @@ public class EventsController {
         Flux<EventResponse> events = eventsService.getAllEvents();
         return ResponseEntity.ok(events);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<Mono<EventResponse>> getEventById(@PathVariable Integer id){
+        Mono<EventResponse> eventResponseMono = eventsService.getEventById(id);
+        return ResponseEntity.ok().body(eventResponseMono);
+    }
 }
